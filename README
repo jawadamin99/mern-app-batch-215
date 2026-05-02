@@ -26,7 +26,7 @@ mern-blog-V1/
 All containers must be on the same network to communicate.
 
 ```bash
-docker network create mongo-net
+docker network create mern-network
 ```
 
 ---
@@ -34,7 +34,7 @@ docker network create mongo-net
 # 🟢 Step 2: Run MongoDB Container
 
 ```bash
-docker run -d --name mongodb  --network mongo-net -p 27017:27017  mongo
+docker run -d --name mongodb  --network=mern-network -p 27017:27017  mongo
 ```
 
 📌 This stores MongoDB data in your local folder.
@@ -44,7 +44,7 @@ docker run -d --name mongodb  --network mongo-net -p 27017:27017  mongo
 # 🟢 Step 3: Build Backend Image
 
 ```bash
-docker build -t backend .
+docker build -t mern-server .
 ```
 
 ---
@@ -52,7 +52,7 @@ docker build -t backend .
 # 🟢 Step 4: Run Backend Container
 
 ```bash
-docker run -d  --name backend  --network mongo-net  -p 5000:5000 backend
+docker run -d  --name mern-server  --network mongo-net  -p 5001:5000 mern-server
 ```
 
 📌 Backend connects to MongoDB using container name `mongodb`.
@@ -62,7 +62,7 @@ docker run -d  --name backend  --network mongo-net  -p 5000:5000 backend
 # 🟢 Step 5: Build Frontend Image
 
 ```bash
-docker build -t frontend:01 .
+docker build -t mern-client .
 ```
 
 ---
@@ -70,7 +70,7 @@ docker build -t frontend:01 .
 # 🟢 Step 6: Run Frontend Container
 
 ```bash
-docker run -d --name frontend --network mongo-net  -p 3000:3000  frontend:01
+docker run -d --name frontend --network mern-network  -p 3000:80  mern-client
 ```
 
 ---
@@ -78,7 +78,7 @@ docker run -d --name frontend --network mongo-net  -p 3000:3000  frontend:01
 # 🌐 Access Application
 
 * Frontend → http://localhost:3000
-* Backend → http://localhost:5000
+* Backend → http://localhost:5001
 * MongoDB → localhost:27017
 
 ---
@@ -94,15 +94,15 @@ docker ps
 ## View logs
 
 ```bash
-docker logs backend
-docker logs frontend
+docker logs mern-client
+docker logs mern-server
 docker logs mongodb
 ```
 
 ## Access container shell
 
 ```bash
-docker exec -it backend sh
+docker exec -it mern-server sh
 docker exec -it mongodb bash
 ```
 
@@ -111,7 +111,7 @@ docker exec -it mongodb bash
 # 🛑 Stop Containers
 
 ```bash
-docker stop frontend backend mongodb
+docker stop mern-client mern-server mongodb
 ```
 
 ---
@@ -119,7 +119,7 @@ docker stop frontend backend mongodb
 # ❌ Remove Containers
 
 ```bash
-docker rm frontend backend mongodb
+docker rm mern-client mern-server mongodb
 ```
 
 ---
@@ -127,7 +127,7 @@ docker rm frontend backend mongodb
 # ❌ Remove Images
 
 ```bash
-docker rmi frontend backend
+docker rmi mern-client mern-server
 ```
 
 ---
