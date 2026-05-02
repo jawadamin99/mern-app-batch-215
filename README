@@ -1,4 +1,4 @@
-# **🚀 MERN Blog Application – Docker Setup (Without Docker Compose)**
+## 🚀 MERN Blog Application – Docker Setup (Without Docker Compose)
 
 This guide explains how to run the **Frontend (React/Vite)**, **Backend (Node.js)**, and **MongoDB** using **Docker commands only**.
 
