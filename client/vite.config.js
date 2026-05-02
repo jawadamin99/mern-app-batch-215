@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     port: 3000,
     proxy: {
-      "/api": "http://mongo-server:5000",
+      "/api": "http://mern-server:5000",
     },
   },
 });
