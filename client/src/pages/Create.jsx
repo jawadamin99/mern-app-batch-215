@@ -21,7 +21,7 @@ export default function Create() {
 
   return (
     <div>
-      <h1 className="text-2xl font-serif font-bold mb-8">New Post</h1>
+      <h1 className="text-2xl font-serif font-bold mb-8">Create a New Post</h1>
       <PostForm onSubmit={handleCreate} submitting={submitting} />
     </div>
   );
