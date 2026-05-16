@@ -21,3 +21,4 @@ jobs:
       - name: Deploy on VPS
         run: |
           /home/docker_projects/deploy-mern-blog.sh
+          
