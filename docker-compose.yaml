@@ -10,8 +10,7 @@ services:
     networks:
       - mern-network
   mern-server:
-    #build: ./server
-    image: jawadamin99/mern-blog-frontend:${IMAGE_TAG}
+    build: ./server
     restart: unless-stopped
     container_name: mern-server
     networks:
@@ -21,8 +20,7 @@ services:
     depends_on:
       - mongodb
   mern-blog-frontend:
-    #build: ./client
-    image: jawadamin99/mern-blog-frontend:${IMAGE_TAG}
+    build: ./client
     restart: unless-stopped
     container_name: mern-blog-frontend
     networks:

@@ -1,4 +1,4 @@
-name: Mern Deploy EC2
+name: Mern Deploy EC2 + VPS
 on:
   push:
     branches:
@@ -14,12 +14,12 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            /home/ubuntu/deploy.sh
+            GIT_SHA=${{ github.sha }} /home/ubuntu/deploy.sh
   deploy-vps:
     runs-on: self-hosted
     steps:
       - name: Deploy on VPS
         run: |
-          GIT_SHA=${{ github.sha }} /home/docker_projects/deploy-mern-blog.sh
+          /home/docker_projects/deploy-mern-blog.sh
           
           
