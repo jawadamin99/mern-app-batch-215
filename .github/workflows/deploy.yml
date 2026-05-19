@@ -20,5 +20,6 @@ jobs:
     steps:
       - name: Deploy on VPS
         run: |
-          /home/docker_projects/deploy-mern-blog.sh
+          GIT_SHA=${{ github.sha }} /home/docker_projects/deploy-mern-blog.sh
+          
           
